@@ -6,7 +6,6 @@
 #define prevP(P) P->prevP
 #define infoP(P) P->infoP
 #define ListC(P) P->ListC
-#define firstC(C) C.firstC
 #define nextC(C) C->nextC
 #define infoC(C) C->infoC
 #include <iostream>
@@ -31,17 +30,13 @@ typedef dataPenumpang infotypeC;
 typedef struct elmP *adrP;
 typedef struct elmC *adrC;
 
-struct ListChild
-{
-    adrC firstC;
-};
 
 struct elmP
 {
     infotypeP infoP;
     adrP nextP;
     adrP prevP;
-    ListChild ListC;
+    adrC ListC;
 };
 
 struct elmC
