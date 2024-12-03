@@ -3,17 +3,22 @@
 
 using namespace std;
 
-void creteListParent(ListParent &Pr){
+void createListParent(ListParent &Pr){
+    /*IS. -
+      FS membuat list gerbong */
     firstP(Pr) = NULL;
     lastP(Pr) = NULL;
 }
 
 adrP createElmP(infotypeP dataP){
+    /*I.S
+      F.S membuat element yang berisikan dataP */
+
     adrP P = new elmP;
     infoP(P) = dataP;
     nextP(P) = NULL;
     prevP(P) = NULL;
-    ListC(P).firstC = NULL;
+    ListC(P) = NULL;
     return P;
 }
 
@@ -25,12 +30,12 @@ bool isEmptyP(ListParent Pr){
     return false;
 }
 
-bool isEmptyC(ListChild C){
-    if (firstC(C) == NULL)
+bool isEmptyC(adrP P){
+    if(ListC(P) == NULL)
     {
         return true;
     }
-    return false;
+        return false;
 }
 
 void insertFirstP(ListParent &Pr, adrP P){
@@ -86,7 +91,7 @@ void showP(ListParent Pr)
 
 void deleteFirstP(ListParent &Pr, adrP &P)
 {
-    ListChild C;
+    adrP C;
     if(!isEmptyC(C))
     {
         cout <<"Penghapusan Tidak Bisa Dilakukan" << endl;
@@ -97,7 +102,7 @@ void deleteFirstP(ListParent &Pr, adrP &P)
         if(firstP(Pr) == lastP(Pr))
         {
             firstP(Pr) = NULL;
-            lastP(Pr)= NULl;
+            lastP(Pr)= NULL;
         }
         else
         {
@@ -110,7 +115,7 @@ void deleteFirstP(ListParent &Pr, adrP &P)
 
 void deleteLastP(ListParent &Pr, adrP &P)
 {
-    ListChild C;
+    adrP C;
     if(!isEmptyC(C))
     {
         cout <<"Penghapusan Tidak Bisa Dilakukan" << endl;
@@ -121,7 +126,7 @@ void deleteLastP(ListParent &Pr, adrP &P)
         if(firstP(Pr) == lastP(Pr))
         {
             firstP(Pr) = NULL;
-            lastP(Pr)= NULl;
+            lastP(Pr)= NULL;
         }
         else
         {
@@ -149,7 +154,4 @@ adrP searchP(ListParent Pr,string Kereta, string Kelas, int InGerbong)
     }
 }
 
-
-
-
-
+void insertCFirst()
