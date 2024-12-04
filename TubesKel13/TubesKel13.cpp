@@ -29,15 +29,16 @@ bool isEmptyP(ListParent Pr){
     }
     return false;
 }
-
-bool isEmptyC(adrP P){
+/*
+bool CheckC(ListParent Pr, string kereta, string kelas, int InGerbong){
+    adrP P = searchP(Pr, kereta, kelas, InGerbong);
     if(ListC(P) == NULL)
     {
         return true;
     }
         return false;
 }
-
+ */
 void insertFirstP(ListParent &Pr, adrP P){
     if (isEmptyP(Pr) == true)
     {
@@ -76,9 +77,9 @@ void showP(ListParent Pr)
     else
     {
         adrP P = firstP(Pr);
+        cout << "List Gerbong Saat ini : " << endl;
         while(P!= NULL)
         {
-            cout << "List Gerbong Saat ini : " << endl;
             cout << "No Gerbong : " << infoP(P).NoGerbong << endl;
             cout << "Nama Kereta : " << infoP(P).namaKereta << endl;
             cout << "Kelas Gerbong : " << infoP(P).KelasGerbong << endl;
@@ -91,8 +92,7 @@ void showP(ListParent Pr)
 
 void deleteFirstP(ListParent &Pr, adrP &P)
 {
-    adrP C;
-    if(!isEmptyC(C))
+    if(ListC(firstP(Pr)) != NULL)
     {
         cout <<"Penghapusan Tidak Bisa Dilakukan" << endl;
     }
@@ -115,8 +115,7 @@ void deleteFirstP(ListParent &Pr, adrP &P)
 
 void deleteLastP(ListParent &Pr, adrP &P)
 {
-    adrP C;
-    if(!isEmptyC(C))
+    if(ListC(lastP(Pr)) != NULL)
     {
         cout <<"Penghapusan Tidak Bisa Dilakukan" << endl;
     }
@@ -154,4 +153,127 @@ adrP searchP(ListParent Pr,string Kereta, string Kelas, int InGerbong)
     }
 }
 
-void insertCFirst()
+
+adrC createElmChild(infotypeC dataC)
+{
+    adrC C = new elmC;
+    infoC(C) = dataC;
+    nextC(C) = NULL;
+}
+
+void insertCFirst(adrP &P, adrC C)
+{
+    if(ListC(P) == NULL)
+    {
+        ListC(P) = C;
+    }
+    else
+    {
+        nextC(C) = ListC(P);
+        ListC(P) = C;
+    }
+}
+
+//Mengubah data Parent/Child belum
+
+
+void showAll(ListParent Pr)
+{
+    adrP P = firstP(Pr);
+
+    if(firstP(Pr) == NULL)
+    {
+        cout << "Tidak ada gerbong" << endl;
+        return;
+    }
+
+    while(P != NULL)
+    {
+        cout << "List Gerbong Saat ini : " << endl;
+        cout << "No Gerbong : " << infoP(P).NoGerbong << endl;
+        cout << "Nama Kereta : " << infoP(P).namaKereta << endl;
+        cout << "Kelas Gerbong : " << infoP(P).KelasGerbong << endl;
+        cout << endl;
+
+        adrC C = ListC(P);
+
+        if(C == NULL)
+        {
+            cout << "Tidak ada penumpang" << endl;
+        }
+        else
+        {
+            cout << "Data Penumpang Gerbong " << infoP(P).NoGerbong << " :" << endl;
+            while(C != NULL)
+            {
+                cout << "Nama : " << infoC(C).Nama << endl;
+                cout << "Nomor Kursi : " << infoC(C).NoKursi << endl;
+                cout << "Harga Tiket : " << infoC(C).HargaTiket << endl;
+                cout << endl;
+
+                C = nextC(C);
+            }
+        }
+        P = nextP(P);
+    }
+}
+
+adrC searchChild(ListParent Pr, string Kereta, string Kelas, int InGerbong, string NamaPenumpang, string NoKursi, int HargaTiket )
+{
+    adrP P = searchP(Pr, Kereta, Kelas, InGerbong);
+
+    if(P == NULL)
+    {
+        cout << "Tidak ada gerbong yng dicari" << endl;
+        return NULL;
+    }
+
+    adrC C = ListC(P);
+
+    while(C != NULL && infoC(C).Nama != NamaPenumpang && infoC(C).NoKursi != NoKursi && infoC(C).HargaTiket != HargaTiket)
+    {
+        C = nextC(C);
+    }
+
+    if(C == NULL)
+    {
+        return NULL;
+    }
+    else
+    {
+        return C;
+    }
+}
+
+void deleteFirstChild(adrP &P, adrC &C, ListParent Pr,string Kereta, string Kelas, int InGerbong)
+{
+    P = searchP(Pr, Kereta, Kelas, InGerbong);
+    if(P == NULL)
+    {
+        cout << "Tidak ada data penumpang yang dapat dihapus" << endl;
+    }
+    else
+    {
+        C = ListC(P);
+
+        if(ListC(P) == NULL)
+        {
+            cout << "Tidak ada data penumpang yang dapat dihapus" << endl;
+        }
+        else
+        {
+            if(nextC(ListC(P)) == NULL)
+            {
+                ListC(P) = NULL;
+            }
+            else
+            {
+                ListC(P) = nextC(C);
+                nextC(C) = NULL;
+            }
+        }
+    }
+}
+
+//Menghitung total penumpang/ pendapatan setiap gerbong  BELUM
+
