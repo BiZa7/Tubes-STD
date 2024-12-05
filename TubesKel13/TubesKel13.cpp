@@ -44,7 +44,8 @@ void insertFirstP(ListParent &Pr, adrP P){
     {
         firstP(Pr) = P;
         lastP(Pr) = P;
-    }else
+    }
+    else
     {
         nextP(P) = firstP(Pr);
         prevP(firstP(Pr)) = P;
@@ -81,7 +82,7 @@ void showP(ListParent Pr)
         while(P!= NULL)
         {
             cout << "No Gerbong : " << infoP(P).NoGerbong << endl;
-            cout << "Nama Kereta : " << infoP(P).namaKereta << endl;
+            cout << "Kapasitas Gerbong : " << infoP(P).MaxPenumpang << endl;
             cout << "Kelas Gerbong : " << infoP(P).KelasGerbong << endl;
             cout << endl;
 
@@ -138,14 +139,14 @@ void deleteLastP(ListParent &Pr, adrP &P)
 
 adrP searchP(ListParent Pr)
 {
-    string Kereta, Kelas;
-    int InGerbong;
+    string Kelas;
+    int InGerbong, MaxPenumpang;
     cout << "Masukan Nomor Gerbong yang Ingin Dicari : " ; cin >> InGerbong;
-    cout << "Masukan Nama Kereta yang Ingin Dicari : " ; cin >> Kereta;
+    cout << "Masukan Kapasitas Pada Gerbong : " ; cin >> MaxPenumpang;
     cout << "Masukan Kelas Gerbong yang Ingin Dicari : " ; cin >> Kelas;
 
     adrP P = firstP(Pr);
-    while(P != NULL && infoP(P).NoGerbong != InGerbong && infoP(P).namaKereta != Kereta && infoP(P).KelasGerbong != Kelas)
+    while(P != NULL && infoP(P).NoGerbong != InGerbong && infoP(P).MaxPenumpang != MaxPenumpang && infoP(P).KelasGerbong != Kelas)
     {
         P = nextP(P);
     }
@@ -167,11 +168,16 @@ adrC createElmChild(infotypeC dataC)
     nextC(C) = NULL;
 }
 
-void insertCFirst(adrP &P, adrC C)
+void insertCFirst(adrP &P, adrC C, ListParent Pr)
 {
+    int i = MenghitungTotalPenumpang(Pr);
     if(ListC(P) == NULL)
     {
         ListC(P) = C;
+    }
+    else if(i >= infoP(P).MaxPenumpang)
+    {
+        cout << "Kapasitas Penuh" << endl;
     }
     else
     {
@@ -183,7 +189,7 @@ void insertCFirst(adrP &P, adrC C)
 void UbahDataParent(adrP &P)
 {
     cout << "Masukan Nomor Gerbong yang Baru : " ; cin >>infoP(P).NoGerbong;
-    cout << "Masukan Nama Kereta yang Baru : " ; cin >>infoP(P).namaKereta;
+    cout << "Masukan Kasitas gerbong yang Baru : " ; cin >>infoP(P).MaxPenumpang;
     cout << "Masukan Kelas Gerbong yang Baru : " ; cin >>infoP(P).KelasGerbong;
 }
 
@@ -202,7 +208,7 @@ void showAll(ListParent Pr)
     {
         cout << "List Gerbong Saat ini : " << endl;
         cout << "No Gerbong : " << infoP(P).NoGerbong << endl;
-        cout << "Nama Kereta : " << infoP(P).namaKereta << endl;
+        cout << "Kapasitas Gerbong : " << infoP(P).MaxPenumpang << endl;
         cout << "Kelas Gerbong : " << infoP(P).KelasGerbong << endl;
         cout << endl;
 
