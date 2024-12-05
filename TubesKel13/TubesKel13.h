@@ -15,7 +15,7 @@ using namespace std;
 struct gerbong
 {
     int NoGerbong;
-    string namaKereta;
+    int MaxPenumpang;
     string KelasGerbong;
 };
 struct dataPenumpang
@@ -61,7 +61,7 @@ void deleteFirstP(ListParent &Pr, adrP &P);
 void deleteLastP(ListParent &Pr, adrP &P);
 adrP searchP(ListParent Pr);
 adrC createElmChild(infotypeC dataC);
-void insertCFirst(adrP &P, adrC C);
+void insertCFirst(adrP &P, adrC C, ListParent Pr);
 void UbahDataParent(adrP &P);
 void showAll(ListParent Pr);
 adrC searchChild(adrP P, adrC C );
