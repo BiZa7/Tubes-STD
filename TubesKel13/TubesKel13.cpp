@@ -180,7 +180,12 @@ void insertCFirst(adrP &P, adrC C)
     }
 }
 
-//void UbahDataParent()
+void UbahDataParent(adrP &P)
+{
+    cout << "Masukan Nomor Gerbong yang Baru : " ; cin >>infoP(P).NoGerbong;
+    cout << "Masukan Nama Kereta yang Baru : " ; cin >>infoP(P).namaKereta;
+    cout << "Masukan Kelas Gerbong yang Baru : " ; cin >>infoP(P).KelasGerbong;
+}
 
 
 void showAll(ListParent Pr)
@@ -283,10 +288,33 @@ void deleteFirstChild(adrP &P, adrC &C)
     }
 }
 
-//Menghitung total penumpang/ pendapatan setiap gerbong  BELUM
+int MenghitungTotalPenumpang(ListParent Pr)
+{
+    adrP P = firstP(Pr);
+    int i = 0;
+    if(firstP(Pr) == NULL)
+    {
+        cout << "Tidak ada gerbong" << endl;
+        return -1 ;
+    }
 
+    while(P != NULL)
+    {
+        adrC C = ListC(P);
 
-
-
-
-
+        if(C == NULL)
+        {
+            cout << "Tidak ada penumpang" << endl;
+        }
+        else
+        {
+            while(C != NULL)
+            {
+                i++;
+                C = nextC(C);
+            }
+        }
+        P = nextP(P);
+    }
+    return i;
+}
