@@ -136,8 +136,14 @@ void deleteLastP(ListParent &Pr, adrP &P)
     }
 }
 
-adrP searchP(ListParent Pr,string Kereta, string Kelas, int InGerbong)
+adrP searchP(ListParent Pr)
 {
+    string Kereta, Kelas;
+    int InGerbong;
+    cout << "Masukan Nomor Gerbong yang Ingin Dicari : " ; cin >> InGerbong;
+    cout << "Masukan Nama Kereta yang Ingin Dicari : " ; cin >> Kereta;
+    cout << "Masukan Kelas Gerbong yang Ingin Dicari : " ; cin >> Kelas;
+
     adrP P = firstP(Pr);
     while(P != NULL && infoP(P).NoGerbong != InGerbong && infoP(P).namaKereta != Kereta && infoP(P).KelasGerbong != Kelas)
     {
@@ -174,7 +180,7 @@ void insertCFirst(adrP &P, adrC C)
     }
 }
 
-//Mengubah data Parent/Child belum
+//void UbahDataParent()
 
 
 void showAll(ListParent Pr)
@@ -218,17 +224,20 @@ void showAll(ListParent Pr)
     }
 }
 
-adrC searchChild(ListParent Pr, string Kereta, string Kelas, int InGerbong, string NamaPenumpang, string NoKursi, int HargaTiket )
+adrC searchChild(adrP P, adrC C)
 {
-    adrP P = searchP(Pr, Kereta, Kelas, InGerbong);
-
+    string NamaPenumpang, NoKursi;
+    int HargaTiket;
+    cout << "Masukan Nama Penumpang yang Ingin Dicari : " ; cin >> NamaPenumpang;
+    cout << "Masukan No Kursi yang Ingin Dicari : " ; cin >> NoKursi;
+    cout << "Masukan Harga Tiket yang Ingin Dicari : " ; cin >> HargaTiket;
     if(P == NULL)
     {
         cout << "Tidak ada gerbong yng dicari" << endl;
         return NULL;
     }
 
-    adrC C = ListC(P);
+    C = ListC(P);
 
     while(C != NULL && infoC(C).Nama != NamaPenumpang && infoC(C).NoKursi != NoKursi && infoC(C).HargaTiket != HargaTiket)
     {
@@ -245,9 +254,8 @@ adrC searchChild(ListParent Pr, string Kereta, string Kelas, int InGerbong, stri
     }
 }
 
-void deleteFirstChild(adrP &P, adrC &C, ListParent Pr,string Kereta, string Kelas, int InGerbong)
+void deleteFirstChild(adrP &P, adrC &C)
 {
-    P = searchP(Pr, Kereta, Kelas, InGerbong);
     if(P == NULL)
     {
         cout << "Tidak ada data penumpang yang dapat dihapus" << endl;
@@ -276,4 +284,9 @@ void deleteFirstChild(adrP &P, adrC &C, ListParent Pr,string Kereta, string Kela
 }
 
 //Menghitung total penumpang/ pendapatan setiap gerbong  BELUM
+
+
+
+
+
 
