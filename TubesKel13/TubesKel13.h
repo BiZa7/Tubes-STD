@@ -59,12 +59,12 @@ void insertLastP(ListParent &Pr, adrP P);
 void showP(ListParent Pr);
 void deleteFirstP(ListParent &Pr, adrP &P);
 void deleteLastP(ListParent &Pr, adrP &P);
-adrP searchP(ListParent Pr,string Kereta, string Kelas, int InGerbong);
+adrP searchP(ListParent Pr);
 adrC createElmChild(infotypeC dataC);
 void insertCFirst(adrP &P, adrC C);
-
+void UbahDataParent(adrP &P);
 void showAll(ListParent Pr);
-adrC searchChild(ListParent Pr, string Kereta, string Kelas, int InGerbong, string NamaPenumpang, string NoKursi, int HargaTiket );
-void deleteFirstChild(adrP &P, adrC &C, ListParent Pr,string Kereta, string Kelas, int InGerbong);
-
+adrC searchChild(adrP P, adrC C );
+void deleteFirstChild(adrP &P, adrC &C);
+int MenghitungTotalPenumpang(ListParent Pr);
 #endif // TUBESKEL13_H_INCLUDED
